@@ -1,8 +1,19 @@
+import 'package:el_fares/components/my_button.dart';
+import 'package:el_fares/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class SplashScreenPage extends StatelessWidget {
   const SplashScreenPage({super.key});
+
+  // Login method
+  void login() {
+    Get.to(() => LoginPage());
+  }
+
+  // sign up method
+  void signup() {}
 
   @override
   Widget build(BuildContext context) {
@@ -65,26 +76,21 @@ class SplashScreenPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.greenAccent,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 80, vertical: 15),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'L O G I N',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                    MyButton(
+                      onPressed: login,
+                      backgroundColor: Colors.greenAccent,
+                      text: 'L O G I N',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
                       ),
                     ),
                     const SizedBox(height: 10),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'S I G N U P',
-                        style: TextStyle(color: Colors.grey),
+                    MyButton(
+                      onPressed: signup,
+                      text: 'S I G N U P',
+                      style: const TextStyle(
+                        color: Colors.grey,
                       ),
                     ),
                   ],
@@ -92,30 +98,37 @@ class SplashScreenPage extends StatelessWidget {
               ),
             ),
             // Globe Icon in Top-left
-            Positioned(
-              top: 45,
-              left: 20,
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                  color: Color(0xffCDFFB6),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 5,
-                      spreadRadius: 1,
-                    ),
-                  ],
-                ),
-                child: Icon(
-                  Icons.language,
-                  color: Colors.black,
-                  size: MediaQuery.of(context).size.width * 0.08,
-                ),
-              ),
-            ),
+            _changeLanguage(context),
           ],
+        ),
+      ),
+    );
+  }
+
+  Positioned _changeLanguage(BuildContext context) {
+    return Positioned(
+      top: 45,
+      left: 20,
+      child: InkWell(
+        onTap: () {},
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+            color: Color(0xffCDFFB6),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 5,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
+          child: Icon(
+            Icons.language,
+            color: Colors.black,
+            size: MediaQuery.of(context).size.width * 0.08,
+          ),
         ),
       ),
     );
