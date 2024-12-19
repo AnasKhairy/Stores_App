@@ -1,5 +1,7 @@
 import 'package:el_fares/components/my_card.dart';
+import 'package:el_fares/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,9 +12,17 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Home page"),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.more_horiz),
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            DrawerHeader(
+              child: IconButton(
+                onPressed: () => Get.to(() => const SplashScreenPage()),
+                icon: const Icon(Icons.logout),
+              ),
+            ),
+          ],
         ),
       ),
       body: Padding(
@@ -20,7 +30,7 @@ class HomePage extends StatelessWidget {
         child: ListView.builder(
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
-            return MyCard();
+            return const MyCard();
           },
         ),
       ),

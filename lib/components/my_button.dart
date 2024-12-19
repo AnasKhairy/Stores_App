@@ -19,10 +19,10 @@ class MyButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
         shadowColor: Colors.black54,
-        padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.34,
-          vertical: 15,
-        ),
+        fixedSize: Size(
+          MediaQuery.of(context).size.width * 0.85,
+          50,
+        ), // Width is 85% of screen, height is 50
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),

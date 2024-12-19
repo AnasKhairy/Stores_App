@@ -1,7 +1,10 @@
 import 'package:el_fares/components/my_button.dart';
 import 'package:el_fares/components/my_textfield.dart';
+import 'package:el_fares/pages/home_page.dart';
+import 'package:el_fares/pages/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
   // email and password controller
@@ -13,6 +16,10 @@ class LoginPage extends StatelessWidget {
 
   // ValueNotifier to manage the checkbox for remember me
   final ValueNotifier<bool> _isChecked = ValueNotifier<bool>(false);
+
+  void signUp() {
+    Get.to(() => SignUpPage());
+  }
 
   LoginPage({super.key});
 
@@ -111,7 +118,9 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 MyButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const HomePage());
+                  },
                   text: "Sign In",
                   style: const TextStyle(
                     color: Colors.white,
@@ -127,7 +136,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     const Text("Don’t have an account? "),
                     InkWell(
-                      onTap: () {},
+                      onTap: signUp,
                       child: Text(
                         "Sign Up",
                         style: TextStyle(color: Colors.cyan.shade900),
