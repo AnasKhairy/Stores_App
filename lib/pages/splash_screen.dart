@@ -1,5 +1,6 @@
 import 'package:el_fares/components/my_button.dart';
 import 'package:el_fares/pages/login_page.dart';
+import 'package:el_fares/pages/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,9 @@ class SplashScreenPage extends StatelessWidget {
   }
 
   // sign up method
-  void signup() {}
+  void signUp() {
+    Get.to(() => SignUpPage());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +90,7 @@ class SplashScreenPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     MyButton(
-                      onPressed: signup,
+                      onPressed: signUp,
                       text: 'S I G N U P',
                       style: const TextStyle(
                         color: Colors.grey,

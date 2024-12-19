@@ -7,12 +7,10 @@ class SignUpPage extends StatelessWidget {
   // email and password controller
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
+  final TextEditingController _confirmPwController = TextEditingController();
 
   // ValueNotifier to manage the password visibility state
   final ValueNotifier<bool> _obscurePassword = ValueNotifier<bool>(true);
-
-  // ValueNotifier to manage the checkbox for remember me
-  final ValueNotifier<bool> _isChecked = ValueNotifier<bool>(false);
 
   SignUpPage({super.key});
 
@@ -20,7 +18,7 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign In"),
+        title: const Text("Sign Up"),
         centerTitle: true,
       ),
       body: Padding(
@@ -31,7 +29,7 @@ class SignUpPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Hi, Welcome Back! 👋",
+                  "Create Account",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
                 ),
                 Text(
@@ -68,39 +66,16 @@ class SignUpPage extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        // checkbox for remember me
-                        ValueListenableBuilder<bool>(
-                          valueListenable: _isChecked,
-                          builder: (context, value, child) {
-                            return Checkbox(
-                              value: value,
-                              activeColor: Colors.grey.shade400,
-                              checkColor: Colors.black,
-                              onChanged: (bool? newValue) {
-                                _isChecked.value = newValue ?? false;
-                              },
-                            );
-                          },
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        const Text('Remember Me'),
-                      ],
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: const Text('Forgot Password'),
-                    ),
-                  ],
+                const Text("Confirm your Password"),
+                ValueListenableBuilder(
+                  valueListenable: _obscurePassword,
+                  builder: (context, value, child) {
+                    return MyTextfield(
+                      hintText: "Re enter your password",
+                      obscure: value,
+                      controller: _confirmPwController,
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 10,
@@ -112,7 +87,7 @@ class SignUpPage extends StatelessWidget {
               children: [
                 MyButton(
                   onPressed: () {},
-                  text: "Sign In",
+                  text: "Create An Account.",
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -139,7 +114,7 @@ class SignUpPage extends StatelessWidget {
                   height: 24,
                 ),
                 Text(
-                  'Or Sign In with',
+                  'Or Sign Up with',
                   style: TextStyle(color: Colors.grey.shade600),
                 ),
                 const SizedBox(
