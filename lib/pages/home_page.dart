@@ -1,10 +1,15 @@
 import 'package:el_fares/components/my_card.dart';
+import 'package:el_fares/pages/add_market.dart';
 import 'package:el_fares/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  void addMarket() {
+    Get.to(() => AddMarket());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +38,10 @@ class HomePage extends StatelessWidget {
             return const MyCard();
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: addMarket,
+        child: const Icon(Icons.add),
       ),
     );
   }
