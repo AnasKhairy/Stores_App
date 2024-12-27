@@ -5,13 +5,19 @@ class AddShop extends StatelessWidget {
    AddShop({super.key});
 
   final TextEditingController _shopNameController = TextEditingController();
-  final TextEditingController _rentDateController = TextEditingController();
-  final TextEditingController _dueDateController = TextEditingController();
-  final TextEditingController _numberOfPaymentsController = TextEditingController();
   final TextEditingController _ownerNameController = TextEditingController();
   final TextEditingController _ownerNumberController = TextEditingController();
-  final TextEditingController _ownerIdController = TextEditingController();
+  final TextEditingController _rentDateController = TextEditingController();
+  final TextEditingController _numberOfPaymentsController = TextEditingController();
 
+  final TextEditingController _rentalPeriodController = TextEditingController();
+  final TextEditingController _dueDateController = TextEditingController();
+  final TextEditingController _tenatIdController = TextEditingController();
+
+   // decoration: BoxDecoration(
+   // border: Border.all(color: Colors.grey),
+   // borderRadius: BorderRadius.circular(12.0),
+   // ),
   @override
   Widget build(BuildContext context) {
     return Scaffold(
