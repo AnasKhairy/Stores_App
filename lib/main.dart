@@ -1,4 +1,6 @@
+import 'package:el_fares/pages/add_details_shop.dart';
 import 'package:el_fares/pages/add_market.dart';
+import 'package:el_fares/pages/add_shop.dart';
 import 'package:el_fares/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AddMarket(),
+      home: AddDetailsShop(),
     );
   }
 }
