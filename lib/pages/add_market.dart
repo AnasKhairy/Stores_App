@@ -11,27 +11,27 @@ class AddMarket extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Market'),
+        title: const Text('Add Market'),
         centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 200,
             ),
             MyTextfield(
                 hintText: 'Enter Name Market',
                 obscure: false,
                 controller: _marketNameController),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             MyButton(
               onPressed: () => {},
               text: 'N E X T',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
               ),
