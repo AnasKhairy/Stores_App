@@ -1,6 +1,8 @@
 import 'package:el_fares/components/my_button.dart';
 import 'package:el_fares/components/my_textfield.dart';
+import 'package:el_fares/pages/add_shop.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AddMarket extends StatelessWidget {
   AddMarket({super.key});
@@ -29,7 +31,7 @@ class AddMarket extends StatelessWidget {
               height: 50,
             ),
             MyButton(
-              onPressed: () => {},
+              onPressed: goTo,
               text: 'N E X T',
               style: TextStyle(
                 color: Colors.white,
@@ -41,5 +43,9 @@ class AddMarket extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void goTo() {
+    Get.to(() => AddShop());
   }
 }

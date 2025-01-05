@@ -6,12 +6,14 @@ class MyTextfield extends StatelessWidget {
   final TextEditingController controller;
   final Widget? suffixIcon;
 
+  // keyboardType? _type;
+
+
   const MyTextfield(
       {super.key,
       required this.hintText,
       required this.obscure,
       required this.controller,
-
       this.suffixIcon,});
 
   @override
