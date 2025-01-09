@@ -1,3 +1,4 @@
+import 'package:el_fares/auth/auth_service.dart';
 import 'package:el_fares/components/my_card.dart';
 import 'package:el_fares/pages/add_market.dart';
 import 'package:el_fares/pages/splash_screen.dart';
@@ -9,6 +10,12 @@ class HomePage extends StatelessWidget {
 
   void addMarket() {
     Get.to(() => AddMarket());
+  }
+
+  void signOut() {
+    final auth = AuthService();
+    auth.signOut();
+    Get.offAll(() => const SplashScreenPage());
   }
 
   @override
@@ -23,7 +30,7 @@ class HomePage extends StatelessWidget {
           children: [
             DrawerHeader(
               child: IconButton(
-                onPressed: () => Get.to(() => const SplashScreenPage()),
+                onPressed: signOut,
                 icon: const Icon(Icons.logout),
               ),
             ),

@@ -1,7 +1,11 @@
+import 'package:el_fares/auth/auth_service.dart';
 import 'package:el_fares/components/my_button.dart';
 import 'package:el_fares/components/my_textfield.dart';
+import 'package:el_fares/pages/home_page.dart';
+import 'package:el_fares/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class SignUpPage extends StatelessWidget {
   // email and password controller
@@ -13,6 +17,36 @@ class SignUpPage extends StatelessWidget {
   final ValueNotifier<bool> _obscurePassword = ValueNotifier<bool>(true);
 
   SignUpPage({super.key});
+
+  void signUp(BuildContext context) {
+    final auth = AuthService();
+
+    // Passwords match --> create new user
+    if (_pwController.text == _confirmPwController.text) {
+      try {
+        auth.signUpWithEmailAndPassword(
+          _emailController.text,
+          _pwController.text,
+        );
+        Get.offAll(() => const HomePage());
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
+      }
+    } else {
+      // Passwords don't match don't create user
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          title: Text("Passwords must match!"),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +120,7 @@ class SignUpPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 MyButton(
-                  onPressed: () {},
+                  onPressed: () => signUp(context),
                   text: "Create An Account.",
                   style: const TextStyle(
                     color: Colors.white,
@@ -100,11 +134,11 @@ class SignUpPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don’t have an account? "),
+                    const Text("Already have an account? "),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => Get.to(() => LoginPage()),
                       child: Text(
-                        "Sign Up",
+                        "Sign In",
                         style: TextStyle(color: Colors.cyan.shade900),
                       ),
                     ),
