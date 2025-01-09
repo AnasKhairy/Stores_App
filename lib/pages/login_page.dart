@@ -1,3 +1,4 @@
+import 'package:el_fares/auth/auth_service.dart';
 import 'package:el_fares/components/my_button.dart';
 import 'package:el_fares/components/my_textfield.dart';
 import 'package:el_fares/pages/home_page.dart';
@@ -17,8 +18,37 @@ class LoginPage extends StatelessWidget {
   // ValueNotifier to manage the checkbox for remember me
   final ValueNotifier<bool> _isChecked = ValueNotifier<bool>(false);
 
-  void signUp() {
-    Get.to(() => SignUpPage());
+  void signIn(BuildContext context) async {
+    final authService = AuthService();
+
+    try {
+      final userCredential = await authService.signInWithEmailAndPassword(
+        _emailController.text,
+        _pwController.text,
+      );
+      if (userCredential.user != null) {
+        if (context.mounted) {
+          Get.offAll(() => const HomePage());
+        }
+      }
+    } catch (e) {
+      if (context.mounted) {
+        // Check if the widget is still mounted
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Error'),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    }
   }
 
   LoginPage({super.key});
@@ -89,7 +119,7 @@ class LoginPage extends StatelessWidget {
                           builder: (context, value, child) {
                             return Checkbox(
                               value: value,
-                              activeColor: Colors.grey.shade400,
+                              activeColor: Colors.grey.shade100,
                               checkColor: Colors.black,
                               onChanged: (bool? newValue) {
                                 _isChecked.value = newValue ?? false;
@@ -118,9 +148,7 @@ class LoginPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 MyButton(
-                  onPressed: () {
-                    Get.to(() => const HomePage());
-                  },
+                  onPressed: () => signIn(context),
                   text: "Sign In",
                   style: const TextStyle(
                     color: Colors.white,
@@ -136,7 +164,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     const Text("Don’t have an account? "),
                     InkWell(
-                      onTap: signUp,
+                      onTap: () => Get.to(() => SignUpPage()),
                       child: Text(
                         "Sign Up",
                         style: TextStyle(color: Colors.cyan.shade900),
