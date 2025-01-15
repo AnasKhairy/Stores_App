@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:el_fares/components/my_button.dart';
 import 'package:el_fares/components/my_textfield.dart';
 import 'package:el_fares/pages/add_details_shop.dart';
@@ -8,6 +9,15 @@ class AddMarket extends StatelessWidget {
   AddMarket({super.key});
 
   final TextEditingController _marketNameController = TextEditingController();
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  void addStore() {
+    _firestore
+        .collection('stores')
+        .add(({'market_name': _marketNameController.text}));
+    Get.offAll(() => const AddDetailsShop());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +34,14 @@ class AddMarket extends StatelessWidget {
               height: 200,
             ),
             MyTextfield(
-                hintText: 'Enter Name Market',
+                hintText: 'Enter Market Name',
                 obscure: false,
                 controller: _marketNameController),
             const SizedBox(
               height: 50,
             ),
             MyButton(
-              onPressed: () => Get.to(()=>const AddDetailsShop()),
+              onPressed: addStore,
               text: 'N E X T',
               style: const TextStyle(
                 color: Colors.white,
