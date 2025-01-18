@@ -13,10 +13,10 @@ class AddMarket extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   void addStore() {
-    _firestore
-        .collection('stores')
-        .add(({'market_name': _marketNameController.text}));
-    Get.offAll(() => const AddDetailsShop());
+    // _firestore
+    //     .collection('stores')
+    //     .add(({'market_name': _marketNameController.text}));
+    // Get.offAll(() => const AddDetailsShop());
   }
 
   @override
