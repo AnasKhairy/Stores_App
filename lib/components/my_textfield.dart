@@ -5,6 +5,7 @@ class MyTextfield extends StatelessWidget {
   final bool obscure;
   final TextEditingController controller;
   final Widget? suffixIcon;
+  final TextInputType? keyboardType;
 
   const MyTextfield(
       {super.key,
@@ -12,7 +13,9 @@ class MyTextfield extends StatelessWidget {
       required this.obscure,
       required this.controller,
 
-      this.suffixIcon,});
+      this.suffixIcon,
+      this.keyboardType,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,7 @@ class MyTextfield extends StatelessWidget {
       child: TextField(
         controller: controller,
         obscureText: obscure,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey.shade300),
