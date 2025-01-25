@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:el_fares/auth/auth_gate.dart';
+import 'package:el_fares/components/market_card.dart';
 import 'package:el_fares/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  // AuthGate()
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(

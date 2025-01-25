@@ -5,12 +5,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../components/my_textfield.dart';
 
 class AddDetailsShop extends StatefulWidget {
   final String marketId;
+
   const AddDetailsShop({super.key, required this.marketId});
 
   @override
@@ -138,55 +137,73 @@ class _AddDetailsShopState extends State<AddDetailsShop> {
                   obscure: false,
                   controller: _shopNameController,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 MyTextfield(
                   hintText: 'Enter Tenant Name',
                   obscure: false,
                   controller: _tenantNameController,
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 MyTextfield(
                   hintText: 'Enter Tenant Number',
                   obscure: false,
                   controller: _tenantNumberController,
                 ),
-                const SizedBox(height: 20),
-                DropdownButton<String>(
-                  hint: const Text('Select Rental Period'),
-                  value: _rentalPeriodController,
-                  onChanged: (String? value) {
-                    setState(() {
-                      _rentalPeriodController = value;
-                    });
-                  },
-                  items: ['Monthly', 'Yearly'].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () => _selectDate(context),
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      selectedDate == null
-                          ? 'Select Rent Date'
-                          : '${selectedDate!.toLocal()}'.split(' ')[0],
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 10),
                 MyTextfield(
                   hintText: 'Enter Payments Amount',
                   obscure: false,
                   controller: _paymentAmountController,
                   keyboardType: TextInputType.number,
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        // Border color and width
+                        borderRadius:
+                            BorderRadius.circular(8), // Rounded corners
+                      ),
+
+                      child: DropdownButton<String>(
+                        padding: const EdgeInsets.symmetric(horizontal:6),
+                      hint: const Text('Select Rental Period', style: TextStyle(fontSize: 14.0),),
+                      value: _rentalPeriodController,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _rentalPeriodController = value;
+                        });
+                      },
+                      items: ['Monthly', 'Yearly'].map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                    ),
+                    const SizedBox(
+                      width: 100, // Dynamic spacing
+                    ),
+                    GestureDetector(
+                      onTap: () => _selectDate(context),
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          selectedDate == null
+                              ? 'Select Rent Date'
+                              : '${selectedDate!.toLocal()}'.split(' ')[0],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 /* const SizedBox(height: 20),
                 GestureDetector(
